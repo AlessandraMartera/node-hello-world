@@ -5,28 +5,31 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
 
 // importo la libreria dotenv
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 
-// la avvio
-dotenv.config();
-
-// funzione per un numero casuale con la quale estrarre una frase casuale in poszione randomNum 
-function randomString(){
 const arrayString = [ 
     "non dire gatto se non lo hai nel sacco", 
     "il mattino ha l'oro in bocca", 
     "Non c'e' peggior sordo di chi, in effetti, non sente", 
     "Chi va con lo zoppo va piano piano", 
     "Il lupo perde il pelo e diventa calvo",
-    "Chi lascia la strada vecchia per la nuova arriva prima perchè è asfaltata",
-]
-
-
-const randomNum = Math.floor( Math.random() * ( arrayString.length - 0) ) + 0; 
-
-if()
-let bob = arrayString[randomNum];
-    return bob;
+    "Chi lascia la strada vecchia per la nuova arriva prima percheì' e' asfaltata",
+];
+let choiceString = [];
+let string;
+// funzione per un numero casuale con la quale estrarre una frase casuale in poszione randomNum 
+function randomString(){
+   
+        do{ if(choiceString.length === arrayString.length){
+        choiceString = [];
+    }
+    
+        string = arrayString[Math.floor( Math.random() * arrayString.length )];
+        } while(choiceString.includes(string))
+    
+    choiceString.push(string); 
+    console.log(choiceString)
+    return string;
 }
 
 // let port= process.env.PORT || 3000;
