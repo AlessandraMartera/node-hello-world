@@ -13,20 +13,20 @@ const arrayString = [
     "Non c'e' peggior sordo di chi, in effetti, non sente", 
     "Chi va con lo zoppo va piano piano", 
     "Il lupo perde il pelo e diventa calvo",
-    "Chi lascia la strada vecchia per la nuova arriva prima percheì' e' asfaltata",
+    "Chi lascia la strada vecchia per la nuova, arriva prima perche' e' asfaltata",
 ];
 let choiceString = [];
 let string;
 // funzione per un numero casuale con la quale estrarre una frase casuale in poszione randomNum 
 function randomString(){
    
-        do{ if(choiceString.length === arrayString.length){
+    do{ if(choiceString.length === arrayString.length){
         choiceString = [];
     }
     
-        string = arrayString[Math.floor( Math.random() * arrayString.length )];
-        } while(choiceString.includes(string))
-    
+    string = arrayString[Math.floor( Math.random() * arrayString.length )];
+    } while(choiceString.includes(string))
+
     choiceString.push(string); 
     console.log(choiceString)
     return string;
@@ -38,9 +38,11 @@ const server = http.createServer(function (req, res) {
     res.writeHead(200, { 
         "Content-Type": "text/html"
         });
-    res.end(`<h1 style="text-aling:center"> ${randomString()} </h1>`)
+    res.end(`<h1>${process.env.TITLE}</h1>
+    <h2 style="text-align: center;"> ${randomString()} </h2>`)
     // console.log("http\\localhost:" + process.env.PORT)
   }).listen(port, host, () => {
     const serverUrl = `http://${host}:${port}`
     console.log(`Server avviato su ${serverUrl}`);
-    });;
+    });
+   
